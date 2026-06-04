@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CompartilhaTube</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+        background:#f5f5f5;
+            margin:0;
+                padding:20px;
+                }
+
+                .container{
+                    max-width:800px;
+                        margin:auto;
+                        }
+
+                        h1{
+                            text-align:center;
+                            }
+
+                            .box{
+                                background:white;
+                                    padding:20px;
+                                        border-radius:10px;
+                                            box-shadow:0 0 10px rgba(0,0,0,0.1);
+                                            }
+
+                                            input{
+                                                width:100%;
+                                                    padding:12px;
+                                                        margin-bottom:10px;
+                                                        }
+
+                                                        button{
+                                                            width:100%;
+                                                                padding:12px;
+                                                                    border:none;
+                                                                        background:red;
+                                                                            color:white;
+                                                                                cursor:pointer;
+                                                                                    border-radius:5px;
+                                                                                    }
+
+                                                                                    button:hover{
+                                                                                        background:darkred;
+                                                                                        }
+
+                                                                                        .video-list{
+                                                                                            margin-top:20px;
+                                                                                            }
+
+                                                                                            .video-item{
+                                                                                                background:#fff;
+                                                                                                    padding:10px;
+                                                                                                        margin-bottom:10px;
+                                                                                                            border-radius:5px;
+                                                                                                            }
+
+                                                                                                            .pix{
+                                                                                                                margin-top:30px;
+                                                                                                                    background:#fff8dc;
+                                                                                                                        padding:15px;
+                                                                                                                            border-radius:10px;
+                                                                                                                                text-align:center;
+                                                                                                                                }
+
+                                                                                                                                footer{
+                                                                                                                                    margin-top:30px;
+                                                                                                                                        text-align:center;
+                                                                                                                                            color:#666;
+                                                                                                                                            }
+                                                                                                                                            </style>
+                                                                                                                                            </head>
+
+                                                                                                                                            <body>
+
+                                                                                                                                            <div class="container">
+
+                                                                                                                                            <h1>📺 CompartilhaTube</h1>
+
+                                                                                                                                            <div class="box">
+
+                                                                                                                                            <input type="text" id="youtubeLink"
+                                                                                                                                            placeholder="Cole aqui seu link do YouTube">
+
+                                                                                                                                            <button onclick="adicionarVideo()">
+                                                                                                                                            Compartilhar Vídeo
+                                                                                                                                            </button>
+
+                                                                                                                                            <div class="video-list" id="listaVideos">
+                                                                                                                                            </div>
+
+                                                                                                                                            </div>
+
+                                                                                                                                            <div class="pix">
+                                                                                                                                            <h3>💖 Ajude a manter o site</h3>
+
+                                                                                                                                            <p>Chave Pix:</p>
+
+                                                                                                                                            <strong>SUA_CHAVE_PIX_AQUI</strong>
+
+                                                                                                                                            <p>
+                                                                                                                                            Sua contribuição ajuda na manutenção
+                                                                                                                                            e crescimento da plataforma.
+                                                                                                                                            </p>
+                                                                                                                                            </div>
+
+                                                                                                                                            <footer>
+                                                                                                                                            Desenvolvido com apoio da comunidade.<br>
+                                                                                                                                            Créditos: David Defante
+                                                                                                                                            </footer>
+
+                                                                                                                                            </div>
+
+                                                                                                                                            <script>
+
+                                                                                                                                            let videos = [];
+
+                                                                                                                                            function adicionarVideo(){
+
+                                                                                                                                                let link =
+                                                                                                                                                    document.getElementById("youtubeLink").value;
+
+                                                                                                                                                        if(link.trim() === ""){
+                                                                                                                                                                alert("Digite um link válido.");
+                                                                                                                                                                        return;
+                                                                                                                                                                            }
+
+                                                                                                                                                                                videos.unshift(link);
+
+                                                                                                                                                                                    atualizarLista();
+
+                                                                                                                                                                                        document.getElementById("youtubeLink").value="";
+                                                                                                                                                                                        }
+
+                                                                                                                                                                                        function atualizarLista(){
+
+                                                                                                                                                                                            let lista =
+                                                                                                                                                                                                document.getElementById("listaVideos");
+
+                                                                                                                                                                                                    lista.innerHTML="";
+
+                                                                                                                                                                                                        videos.forEach(video=>{
+
+                                                                                                                                                                                                                lista.innerHTML += `
+                                                                                                                                                                                                                        <div class="video-item">
+                                                                                                                                                                                                                                    <a href="${video}"
+                                                                                                                                                                                                                                                target="_blank">
+                                                                                                                                                                                                                                                            ${video}
+                                                                                                                                                                                                                                                                        </a>
+                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                        `;
+                                                                                                                                                                                                                                                                                            });
+                                                                                                                                                                                                                                                                                            }
+
+                                                                                                                                                                                                                                                                                            setInterval(()=>{
+                                                                                                                                                                                                                                                                                                atualizarLista();
+                                                                                                                                                                                                                                                                                                },59000);
+
+                                                                                                                                                                                                                                                                                                </script>
+
+                                                                                                                                                                                                                                                                                                </body>
+                                                                                                                                                                                                                                                                                                </html>
