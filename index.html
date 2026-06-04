@@ -120,48 +120,46 @@ body{
 
                                                                                                                                             let videos = [];
 
-                                                                                                                                            function adicionarVideo(){
+                                                                                                                                            function atualizarLista(){
 
-                                                                                                                                                let link =
-                                                                                                                                                    document.getElementById("youtubeLink").value;
+    let lista =
+    document.getElementById("listaVideos");
 
-                                                                                                                                                        if(link.trim() === ""){
-                                                                                                                                                                alert("Digite um link válido.");
-                                                                                                                                                                        return;
-                                                                                                                                                                            }
+    lista.innerHTML="";
 
-                                                                                                                                                                                videos.unshift(link);
+    videos.forEach(video=>{
 
-                                                                                                                                                                                    atualizarLista();
+        let videoId = "";
 
-                                                                                                                                                                                        document.getElementById("youtubeLink").value="";
-                                                                                                                                                                                        }
+        if(video.includes("youtu.be/")){
+            videoId = video.split("youtu.be/")[1].split("?")[0];
+        }
+        else if(video.includes("v=")){
+            videoId = video.split("v=")[1].split("&")[0];
+        }
 
-                                                                                                                                                                                        function atualizarLista(){
+        let thumbnail =
+        `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
-                                                                                                                                                                                            let lista =
-                                                                                                                                                                                                document.getElementById("listaVideos");
+        lista.innerHTML += `
+        <div class="video-item">
 
-                                                                                                                                                                                                    lista.innerHTML="";
+            <a href="${video}" target="_blank">
+                <img
+                    src="${thumbnail}"
+                    alt="Thumbnail"
+                    style="
+                    width:100%;
+                    border-radius:8px;
+                    margin-bottom:10px;
+                    ">
+            </a>
 
-                                                                                                                                                                                                        videos.forEach(video=>{
+            <a href="${video}" target="_blank">
+                Assistir no YouTube
+            </a>
 
-                                                                                                                                                                                                                lista.innerHTML += `
-                                                                                                                                                                                                                        <div class="video-item">
-                                                                                                                                                                                                                                    <a href="${video}"
-                                                                                                                                                                                                                                                target="_blank">
-                                                                                                                                                                                                                                                            ${video}
-                                                                                                                                                                                                                                                                        </a>
-                                                                                                                                                                                                                                                                                </div>
-                                                                                                                                                                                                                                                                                        `;
-                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                            }
-
-                                                                                                                                                                                                                                                                                            setInterval(()=>{
-                                                                                                                                                                                                                                                                                                atualizarLista();
-                                                                                                                                                                                                                                                                                                },59000);
-
-                                                                                                                                                                                                                                                                                                </script>
-
-                                                                                                                                                                                                                                                                                                </body>
-                                                                                                                                                                                                                                                                                                </html>
+        </div>
+        `;
+    });
+                                                                                                                                            }
